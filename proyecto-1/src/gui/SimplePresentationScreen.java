@@ -1,8 +1,8 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,15 +10,9 @@ import javax.swing.border.EmptyBorder;
 import entities.Student;
 import javax.swing.JTabbedPane;
 import java.awt.Toolkit;
+import java.time.LocalDateTime;
+
 import javax.swing.JLabel;
-import java.awt.GridLayout;
-import java.awt.GridBagLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import java.awt.FlowLayout;
-import javax.swing.JTextPane;
-import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
@@ -33,11 +27,21 @@ public class SimplePresentationScreen extends JFrame {
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
 	private JLabel lblNewLabel_4;
-	private JTextPane textPane;
-	private JTextPane textPane_1;
-	private JTextPane textPane_2;
-	private JTextPane textPane_3;
-	private JTextPane textPane_4;
+	private JTextField textFieldLU;
+	private JTextField textFieldApellido;
+	private JTextField textFieldNombre;
+	private JTextField textFieldEmail;
+	private JTextField textFieldGithub;
+	private JLabel lblNewLabel_5;
+	private JLabel lblNewLabel_6;
+	private int dia;
+	private int mes;
+	private int año;
+	private int	hora;
+	private int minutos;
+ 	private int segundos;
+ 	LocalDateTime ahora;
+	
 
 	public SimplePresentationScreen(Student studentData) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SimplePresentationScreen.class.getResource("/images/tdp.png")));
@@ -48,7 +52,7 @@ public class SimplePresentationScreen extends JFrame {
 		
 		setTitle("TdP-DCIC-UNS 2021 :: Pantalla de presentaci\u00F3n");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(new Dimension(615, 250));
+		setSize(new Dimension(615, 286));
 		setResizable(false);
 		setContentPane(contentPane);
 		
@@ -59,42 +63,71 @@ public class SimplePresentationScreen extends JFrame {
 		contentPane.setLayout(null);
 		// Tabbed Pane to student personal data
 		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(5, 5, 449, 211);
+		tabbedPane.setBounds(5, 5, 594, 220);
 		tabInformation = new JPanel();
 		tabInformation.setPreferredSize(new Dimension(425, 275));
 		tabbedPane.addTab("Información del alumno", null, tabInformation, "Muestra la información declarada por el alumno");
-		tabInformation.setLayout(new GridLayout(5, 2, 0, 0));
+		tabInformation.setLayout(null);
 		
-		lblNewLabel_1 = new JLabel("  LU");
-		tabInformation.add(lblNewLabel_1);
-		
-		textPane = new JTextPane();
-		tabInformation.add(textPane);
-		
-		lblNewLabel_4 = new JLabel("  Apellido");
-		tabInformation.add(lblNewLabel_4);
-		
-		textPane_2 = new JTextPane();
-		tabInformation.add(textPane_2);
-		
-		lblNewLabel_3 = new JLabel("  Nombre");
-		tabInformation.add(lblNewLabel_3);
-		
-		textPane_1 = new JTextPane();
-		tabInformation.add(textPane_1);
-		
-		lblNewLabel = new JLabel("  Email");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNewLabel = new JLabel("LU");
+		lblNewLabel.setBounds(10, 11, 61, 34);
 		tabInformation.add(lblNewLabel);
 		
-		textPane_3 = new JTextPane();
-		tabInformation.add(textPane_3);
+		lblNewLabel_1 = new JLabel("Apellido");
+		lblNewLabel_1.setBounds(10, 47, 61, 34);
+		tabInformation.add(lblNewLabel_1);
 		
-		lblNewLabel_2 = new JLabel("  Github URL");
+		lblNewLabel_2 = new JLabel("Nombre");
+		lblNewLabel_2.setBounds(10, 79, 61, 34);
 		tabInformation.add(lblNewLabel_2);
 		
-		textPane_4 = new JTextPane();
-		tabInformation.add(textPane_4);
+		lblNewLabel_3 = new JLabel("E-mail");
+		lblNewLabel_3.setBounds(10, 109, 61, 34);
+		tabInformation.add(lblNewLabel_3);
+		
+		lblNewLabel_4 = new JLabel("Github URL");
+		lblNewLabel_4.setBounds(10, 141, 71, 31);
+		tabInformation.add(lblNewLabel_4);
+		
+		textFieldLU = new JTextField(""+studentData.getId());
+		textFieldLU.setBounds(81, 18, 214, 20);
+		tabInformation.add(textFieldLU);
+		textFieldLU.setColumns(10);
+		
+		textFieldApellido = new JTextField(studentData.getLastName());
+		textFieldApellido.setBounds(81, 54, 214, 20);
+		tabInformation.add(textFieldApellido);
+		textFieldApellido.setColumns(10);
+		
+		textFieldNombre = new JTextField(studentData.getFirstName());
+		textFieldNombre.setBounds(81, 86, 214, 20);
+		tabInformation.add(textFieldNombre);
+		textFieldNombre.setColumns(10);
+		
+		textFieldEmail = new JTextField(studentData.getMail());
+		textFieldEmail.setBounds(81, 116, 214, 20);
+		tabInformation.add(textFieldEmail);
+		textFieldEmail.setColumns(10);
+		
+		textFieldGithub = new JTextField(studentData.getGithubURL());
+		textFieldGithub.setBounds(81, 146, 214, 20);
+		tabInformation.add(textFieldGithub);
+		textFieldGithub.setColumns(10);
+		
+		lblNewLabel_5 = new JLabel(new ImageIcon("C:/Users/anto7/Escritorio/GitTDP/proyecto-1/src/images/foto3.jpg"));
+		lblNewLabel_5.setBounds(313, 11, 247, 161);
+		tabInformation.add(lblNewLabel_5);
 		contentPane.add(tabbedPane);
+		
+		ahora=LocalDateTime.now();
+		dia=ahora.getDayOfMonth();
+		mes=ahora.getMonthValue();
+		año=ahora.getYear();
+		hora=ahora.getHour();
+		minutos=ahora.getMinute();
+		segundos=ahora.getSecond();
+		lblNewLabel_6 = new JLabel("Esta ventana fue generada el "+dia+"/"+mes+"/"+año+" a las: "+hora+":"+minutos+":"+segundos);
+		lblNewLabel_6.setBounds(10, 232, 333, 14);
+		contentPane.add(lblNewLabel_6);
 	}
 }
