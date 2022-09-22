@@ -114,7 +114,8 @@ public class SimplePresentationScreen extends JFrame {
 		textFieldGithub.setText(studentData.getGithubURL());
 		
 		JLabel lblImagen = new JLabel("");
-		lblImagen.setIcon(new ImageIcon(studentData.getPathPhoto()));
+		//lblImagen.setIcon(new ImageIcon(studentData.getPathPhoto()));
+		lblImagen.setIcon(new ImageIcon(Toolkit.getDefaultToolkit().getImage(SimplePresentationScreen.class.getResource(studentData.getPathPhoto()))));
 		lblImagen.setBounds(438, 11, 236, 219);
 		contentPane.add(lblImagen);
 		
