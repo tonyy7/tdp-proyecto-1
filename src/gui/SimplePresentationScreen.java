@@ -123,10 +123,9 @@ public class SimplePresentationScreen extends JFrame {
 		lblHoraEjecucion.setBounds(15, 205, 422, 25);
 		contentPane.add(lblHoraEjecucion);
 		
-		//El mes me da erroneo, ya probe con metodos distintos, asumo que es problema de mi pc o ide
 		Calendar fecha= new GregorianCalendar();
 		int año=fecha.get(Calendar.YEAR);
-		int mes=fecha.get(Calendar.MONTH);
+		int mes=fecha.get(Calendar.MONTH)+1;
 		int dia=fecha.get(Calendar.DATE);
 		String hora=""+fecha.get(Calendar.HOUR_OF_DAY);
 		String minuto=""+fecha.get(Calendar.MINUTE);
